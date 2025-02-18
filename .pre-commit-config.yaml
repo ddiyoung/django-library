@@ -1,17 +1,14 @@
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.6
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0  # 최신 버전 확인 후 변경 가능
     hooks:
-      - id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
-      - id: ruff-format
+      - id: trailing-whitespace  # 불필요한 공백 제거
+      - id: end-of-file-fixer  # 파일 끝 개행 정리
+      - id: check-yaml  # YAML 파일 문법 체크
+      - id: check-json  # JSON 파일 문법 체크
+      - id: check-added-large-files  # 너무 큰 파일이 추가되지 않도록 체크
 
-  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.14.0
+  - repo: https://github.com/psf/black
+    rev: 24.2.0  # 최신 버전 확인 후 변경 가능
     hooks:
-      - id: pretty-format-toml
-        args: [--autofix, --trailing-commas, --no-sort]
-        exclude: "^(.*/?poetry.lock)$"
-
-default_language_version:
-  python: python3
+      - id: black  # Python 코드 스타일 자동 정리
