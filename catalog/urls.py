@@ -9,6 +9,10 @@ from .views import (
     AuthorDetailAPIView,
     AuthorCreateAPIView,
     AuthorSearchAPIView,
+    CategoryListAPIView,
+    CategoryCreateAPIView,
+    CategoryDetailAPIView,
+    CategorySearchAPIView,
 )
 
 urlpatterns = [
@@ -20,4 +24,8 @@ urlpatterns = [
     path("author/<int:id>/", AuthorDetailAPIView.as_view(), name="author_detail"),
     path("author/create/", AuthorCreateAPIView.as_view(), name="author-create"),
     path("author/search/", AuthorSearchAPIView.as_view(), name="author-search"),
+    path("category/", CategoryListAPIView.as_view(), name="category-list"),
+    path("category/<int:id>/", CategoryDetailAPIView.as_view(), name="category-detail"),
+    path("category/create/", CategoryCreateAPIView.as_view(), name="category-create"),
+    path("category/search/", CategorySearchAPIView.as_view(), name="category-search"),
 ]
