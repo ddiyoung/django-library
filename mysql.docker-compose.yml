@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.0  # MySQL 8.0 이미지 사용 (버전 변경 가능)
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # 루트 비밀번호 설정
+      MYSQL_DATABASE: my_database  # 기본으로 생성할 DB 이름
+      MYSQL_USER: my_user  # 사용자 계정
+      MYSQL_PASSWORD: my_password  # 사용자 비밀번호
+    ports:
+      - "3306:3306"  # 호스트 포트와 컨테이너 포트 매핑
+    volumes:
+      - mysql_data:/var/lib/mysql  # 데이터 유지
+
+volumes:
+  mysql_data:
