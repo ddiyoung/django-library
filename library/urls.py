@@ -17,7 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from catalog.views import BookListAPIView, BookDetailAPIView, BookCreateAPIView
+from catalog.views import (
+    BookListAPIView,
+    BookDetailAPIView,
+    BookCreateAPIView,
+    BookSearchAPIView,
+    AuthorListAPIView,
+)
 from users.views import SignInView, SignUpView
 
 urlpatterns = [
@@ -27,4 +33,6 @@ urlpatterns = [
     path("catalog/book/", BookListAPIView.as_view(), name="book-list"),
     path("catalog/book/<int:id>/", BookDetailAPIView.as_view(), name="book-detail"),
     path("catalog/book/create/", BookCreateAPIView.as_view(), name="book-create"),
+    path("catalog/book/search/", BookSearchAPIView.as_view(), name="book-search"),
+    path("catalog/author/", AuthorListAPIView.as_view(), name="author-list"),
 ]

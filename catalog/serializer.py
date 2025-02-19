@@ -29,13 +29,13 @@ class BookSerializer(serializers.ModelSerializer):
     publisher = PublisherSerializer(read_only=True)
 
     author_ids = serializers.PrimaryKeyRelatedField(  # ✅ POST/PATCH 시 사용
-        many=True, queryset=Author.objects.all(), write_only=True
+        many=True, queryset=Author.objects.all(), write_only=True, allow_null=True
     )
     categories_ids = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Category.objects.all(), write_only=True
+        many=True, queryset=Category.objects.all(), write_only=True, allow_null=True
     )
     publisher_ids = serializers.PrimaryKeyRelatedField(
-        queryset=Publisher.objects.all(), write_only=True
+        queryset=Publisher.objects.all(), write_only=True, allow_null=True
     )
 
     class Meta:
