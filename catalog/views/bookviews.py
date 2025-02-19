@@ -1,4 +1,3 @@
-# Create your views here.
 from rest_framework.generics import (
     GenericAPIView,
     CreateAPIView,
@@ -7,11 +6,10 @@ from rest_framework.generics import (
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-
-from catalog.serializer import BookSerializer, AuthorSerializer
+from catalog.serializer import BookSerializer
 from users.permissions import IsAdminOrStaffGroup
-from .models import Book, Author
-from .services.bookservices import BookServices
+from ..models import Book, Author
+from ..services.bookservices import BookServices
 
 
 # 책 목록 조회 ListAPIView
@@ -22,7 +20,7 @@ class BookListAPIView(ListAPIView):
     queryset = Book.objects.all()
 
 
-# 특정 책 조회 RetriveAPIView
+# 특정 책 조회
 # 특정 책 수정
 # 특정 책 삭제
 class BookDetailAPIView(RetrieveUpdateDestroyAPIView):
@@ -63,20 +61,3 @@ class BookSearchAPIView(GenericAPIView):
         serializer = self.get_serializer(books, many=True)
 
         return Response(serializer.data)
-
-
-class AuthorListAPIView(ListAPIView):
-    authentication_classes = []
-    permission_classes = []
-    serializer_class = AuthorSerializer
-    queryset = Author.objects.all()
-
-
-# 저자 목록 조회
-# 저자 상세 조회
-# 저자 등록
-# 저자 수정
-# 저자 삭제
-
-# 카테고리 목록 죄회
-# 카테고리 추가
