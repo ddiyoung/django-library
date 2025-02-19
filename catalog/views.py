@@ -3,14 +3,13 @@ from rest_framework.generics import (
     GenericAPIView,
     CreateAPIView,
     ListAPIView,
-    RetrieveAPIView,
     RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from catalog.serializer import BookSerializer, AuthorSerializer
-from users.permissions import IsAdminGroup, IsStaffGroup, IsAdminOrStaffGroup
+from users.permissions import IsAdminOrStaffGroup
 from .models import Book, Author
 from .services.bookservices import BookServices
 
