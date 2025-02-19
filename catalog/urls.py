@@ -6,6 +6,9 @@ from .views import (
     BookCreateAPIView,
     BookSearchAPIView,
     AuthorListAPIView,
+    AuthorDetailAPIView,
+    AuthorCreateAPIView,
+    AuthorSearchAPIView,
 )
 
 urlpatterns = [
@@ -14,4 +17,7 @@ urlpatterns = [
     path("book/create/", BookCreateAPIView.as_view(), name="book-create"),
     path("book/search/", BookSearchAPIView.as_view(), name="book-search"),
     path("author/", AuthorListAPIView.as_view(), name="author-list"),
+    path("author/<int:id>/", AuthorDetailAPIView.as_view(), name="author_detail"),
+    path("author/create/", AuthorCreateAPIView.as_view(), name="author-create"),
+    path("author/search/", AuthorSearchAPIView.as_view(), name="author-search"),
 ]
