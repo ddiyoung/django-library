@@ -20,10 +20,14 @@ class Book(models.Model):
     title = models.CharField(max_length=300)
     publication_date = models.DateField()
     pages = models.IntegerField()
-    author = models.ManyToManyField(Author)
-    publisher = models.ForeignKey(Publisher, on_delete=models.SET_NULL, null=True)
+    author = models.ManyToManyField(Author, related_name="books")
+    publisher = models.ForeignKey(
+        Publisher, on_delete=models.SET_NULL, null=True, related_name="books"
+    )
     summary = models.TextField(blank=True, null=True)
-    categories = models.ManyToManyField(Category, through="BookCategory")
+    categories = models.ManyToManyField(
+        Category, through="BookCategory", related_name="books"
+    )
 
     def __str__(self):
         return self.title
