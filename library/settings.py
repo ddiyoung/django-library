@@ -116,6 +116,12 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",  # 기본 인증 백엔드
+]
+
+AUTH_USER_MODEL = "users.User"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
