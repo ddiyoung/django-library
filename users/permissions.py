@@ -18,3 +18,10 @@ class IsAdminGroup(BasePermission):
             request.user.is_authenticated
             and request.user.groups.filter(name="Admin").exists()
         )
+
+
+class IsAdminOrStaffGroup(BasePermission):
+    def has_permission(self, request, view):
+        return IsAdminGroup().has_permission(
+            request, view
+        ) or IsStaffGroup().has_permission(request, view)
