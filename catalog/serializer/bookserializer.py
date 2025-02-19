@@ -1,26 +1,9 @@
-from unicodedata import category
-
 from rest_framework import serializers
+from catalog.models import Book, Author, Category, Publisher
 
-from .models import Book, Author, Category, Publisher
-
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Author
-        fields = ["id", "name", "bio"]
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ["id", "name"]
-
-
-class PublisherSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Publisher
-        fields = ["id", "name", "location"]
+from .authorserializer import AuthorSerializer
+from .categoryserializer import CategorySerializer
+from .publisherserializer import PublisherSerializer
 
 
 class BookSerializer(serializers.ModelSerializer):
