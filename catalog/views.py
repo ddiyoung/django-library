@@ -22,6 +22,8 @@ class BookListAPIView(ListAPIView):
 
 
 # 특정 책 조회 RetriveAPIView
+# 특정 책 수정
+# 특정 책 삭제
 class BookDetailAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
@@ -34,8 +36,12 @@ class BookDetailAPIView(RetrieveUpdateDestroyAPIView):
 
 
 # 책 등록 CreateAPIView
-# 책 수정
-# 책 삭제
+class BookCreateAPIView(CreateAPIView):
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()
+    permission_classes = [IsAdminOrStaffGroup]
+
+
 # 책 검색
 
 # 저자 목록 조회
