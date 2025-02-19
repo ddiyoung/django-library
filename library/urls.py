@@ -16,23 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from catalog.views import (
-    BookListAPIView,
-    BookDetailAPIView,
-    BookCreateAPIView,
-    BookSearchAPIView,
-    AuthorListAPIView,
-)
+from django.urls import path, include
 from users.views import SignInView, SignUpView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("signup/", SignUpView.as_view(), name="signup"),
     path("signin/", SignInView.as_view(), name="signin"),
-    path("catalog/book/", BookListAPIView.as_view(), name="book-list"),
-    path("catalog/book/<int:id>/", BookDetailAPIView.as_view(), name="book-detail"),
-    path("catalog/book/create/", BookCreateAPIView.as_view(), name="book-create"),
-    path("catalog/book/search/", BookSearchAPIView.as_view(), name="book-search"),
-    path("catalog/author/", AuthorListAPIView.as_view(), name="author-list"),
+    path("catalog/", include("catalog.urls")),
 ]
