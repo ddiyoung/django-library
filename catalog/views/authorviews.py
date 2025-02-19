@@ -6,9 +6,9 @@ from rest_framework.generics import (
 )
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from catalog.serializer import BookSerializer, AuthorSerializer
+from catalog.serializer import AuthorSerializer
 from users.permissions import IsAdminOrStaffGroup
-from ..models import Book, Author
+from ..models import Author
 
 
 # 저자 목록 조회
