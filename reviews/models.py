@@ -13,7 +13,9 @@ class Review(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=["user", "book"], name="unique_review"),
+            models.UniqueConstraint(
+                fields=["user", "book"], name="unique_review"
+            ),  # 책과 User의 조합은 unique
         ]
 
     def __str__(self):
@@ -33,11 +35,15 @@ class Like(models.Model):
         default="none",
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 유저
-    review = models.ForeignKey(Review, on_delete=models.CASCADE)  # 리뷰
+    review = models.ForeignKey(
+        Review, on_delete=models.CASCADE, related_name="likes"
+    )  # 리뷰
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=["user", "review"], name="unique_like"),
+            models.UniqueConstraint(
+                fields=["user", "review"], name="unique_like"
+            ),  # 리뷰와 User의 조합은 Unique
         ]
 
     def __str__(self):
