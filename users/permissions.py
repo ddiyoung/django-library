@@ -25,3 +25,11 @@ class IsAdminOrStaffGroup(BasePermission):
         return IsAdminGroup().has_permission(
             request, view
         ) or IsStaffGroup().has_permission(request, view)
+
+
+class IsCustomerGroup(BasePermission):
+    def has_permission(self, request, view):
+        return (
+            request.user.is_authenticated
+            and request.user.groups.filter(name="Customer").exists()
+        )
