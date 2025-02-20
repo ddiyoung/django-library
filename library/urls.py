@@ -25,4 +25,5 @@ urlpatterns = [
     path("signin/", SignInView.as_view(), name="signin"),
     path("catalog/", include("catalog.urls")),
     path("reviews/", include("reviews.urls")),
+    path("orders/", include("orders.urls")),
 ]

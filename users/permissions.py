@@ -38,3 +38,10 @@ class IsCustomerGroup(BasePermission):
 class IsOwnerUser(BasePermission):
     def has_object_permission(self, request, view, obj):
         return request.user.is_authenticated and (request.user == obj.user)
+
+
+class IsOwnerUserOrIsAdminOrStaffGroup(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return IsOwnerUser().has_object_permission(
+            request, view, obj
+        ) or IsAdminOrStaffGroup().has_permission(request, view)
