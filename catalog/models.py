@@ -37,6 +37,7 @@ class Book(models.Model):
     categories = models.ManyToManyField(
         Category, through="BookCategory", related_name="books"
     )
+    price = models.IntegerField()
 
     def __str__(self):
         return self.title
